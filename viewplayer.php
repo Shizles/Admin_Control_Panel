@@ -83,7 +83,6 @@ include ('assets/scripts/checkSession.php');
             }
         </script>
 </head>
-=======
 			<script>
 				// Numeric only control handler
 				$(document).ready(function() {
@@ -132,7 +131,6 @@ include ('assets/scripts/checkSession.php');
 				}
 			</script>	
 		</head>
->>>>>>> origin/master
 	<body>
 		<?php include ('assets/scripts/navbar.php'); ?>
 		
