@@ -1,0 +1,85 @@
+<?php
+include ('assets/scripts/config.php');
+include ('assets/scripts/checkSession.php');
+
+if (isset($_POST['btnRestartServer'])){
+    //restartServer();
+    pclose(popen("start /B \"C:\\test.bat\" \"C:\\xampp\\htdocs\\MG_Control_Panel\\servers.php\"", "r"));
+    //echo exec('whoami');
+    echo "Button Pressed";
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<link rel="icon" href="assets/css/images/favicon.png" type="image/x-icon">
+</head>
+<title> Admin Control Panel - Metro Gaming </title>
+<body>
+
+<div id="container">
+	<img src="assets/images/metrocontrol.png" width="371px" height="71px"/>
+
+	<div id="header">
+
+			<p id="headerText">Welcome to the Admin Control Panel</p>
+
+		<div id="nav">
+                <ul>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="servers.php">Servers</a></li>
+                    <li><a href="playermanagement.php">Player Management</a></li>
+                    <li><a href="bans.php">Bans</a></li>
+                    <li><a href="statistics.php">Statistics</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </div>
+	</div>
+
+	<div id="main">
+                <div id="servers">
+                <div id="allServers">
+                    <?php
+                        $url= "http://www.gametracker.com/datafeeds/?server_info&GAMESERVERID=4158514.xml";
+                        $url2= "http://www.gametracker.com/datafeeds/?server_info&GAMESERVERID=3953524.xml";
+                        $url3= "http://www.gametracker.com/datafeeds/?server_info&GAMESERVERID=3953523.xml";
+                        //$url4="http://www.gametracker.com/datafeeds/?server_info&GAMESERVERID=4046548.xml";
+
+                        //$xml4=simplexml_load_file($url4);
+                        $xml3=simplexml_load_file($url3);
+                        $xml2=simplexml_load_file($url2);
+                        $xml=simplexml_load_file($url);
+
+                        $name = rawurldecode($xml->server[0]->name);
+                        $name2 = rawurldecode($xml2->server[0]->name);  
+                        $name3 = rawurldecode($xml3->server[0]->name);
+                        //$name4 = rawurldecode($xml4->server[0]->name);
+
+                        echo "<p>[MG] Altis Life #1 |  " . $xml->server[0]->playerscurrent . "/"; echo $xml->server[0]->playersmax . "</p>";
+
+                        //echo "<p>[MG] Altis Life #2 |  " . $xml4->server[0]->playerscurrent . "/"; echo $xml4->server[0]->playersmax . "</p>";
+
+                        echo "<p>[MG] Garry's Mod |  " . $xml2->server[0]->playerscurrent . "/"; echo $xml2->server[0]->playersmax . "</p>";
+
+                        echo "<p>[MG] CS: Source |  " . $xml3->server[0]->playerscurrent . "/"; echo $xml3->server[0]->playersmax . "</p>";
+
+                    ?>
+                </div>
+            </div>
+            <div id="restartButton">
+                <?php
+                    //if($_SESSION['Privilege'] >= 4)
+                    //{
+                    //    echo "<form action='' method='post' id='restartServer'><button name='btnRestartServer' type='submit'>Restart Server</button></form>";
+                    //}
+                ?>
+            </div>
+	</div>
+        <div id="footer">
+            <span class="copy">&copy; Copyright Metro Gaming 2014</span>
+        </div>
+    </div>
+</body>
+</html>
