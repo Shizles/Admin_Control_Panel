@@ -129,6 +129,9 @@ function vehClassToName($class) {
 		case "B_Truck_01_medical_F":
             return "HEMTT Medical";
             break;
+		case "O_Truck_03_transport_F":
+            return "Tempest";
+            break;
         default:
             return $class;
             break;
