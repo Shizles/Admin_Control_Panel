@@ -79,12 +79,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["SOMEHIDDENVARIABLE"])){
 	
 	<button type="submit" value="Search" class="btn btn-default">Search</button>
 		  
+	<!-- REMOVED DUE TO NOT BEING USED AND SOMETHINTG BROKE  
 	  <div class="checkbox">
 		<label>
 		  <input type="checkbox" name="whitelist" value="1"> Whitelisted?
 		</label>
 	  </div>
 	</form>
+	-->
 	
 	
 	<!-- filter end -->
