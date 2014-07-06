@@ -5,7 +5,7 @@ include ('assets/scripts/checkSession.php');
 
 
 function whitelistPlayer($playerUID) {
-//  include ('assets/scripts/config.php');
+    include ('assets/scripts/config.php');
     $visitorIP = $_SERVER["REMOTE_ADDR"];
     $user = $_SESSION['UserID'];
     mysql_connect($dbhost, $dbuser, $dbpassword);
