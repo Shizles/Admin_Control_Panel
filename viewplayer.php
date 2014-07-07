@@ -398,9 +398,9 @@ include ('assets/scripts/checkSession.php');
 									}
 									echo "</td>";
 									
-									echo "<td>"
-										echo "<a href=''>Delete Vehicle</a>"
-									echo "</td>"
+									echo "<td>";
+										echo "<a href='#'>Delete</a>";
+									echo "</td>";
 								echo "</tr>";
 							}
 						?>
