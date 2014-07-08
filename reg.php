@@ -17,7 +17,7 @@ include 'assets/scripts/config.php';
             $code = $_POST['code'];
             $getPrivilege = mysql_query("SELECT privilege FROM regcodes WHERE code = '$code'");
             
-            if(mysql_num_rows($getPrivilege == 0)) {
+            if(mysql_num_rows($getPrivilege = 0)) {
                 die ('Invalid code entered.');
             }
             

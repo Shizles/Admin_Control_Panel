@@ -81,56 +81,13 @@ include ('assets/scripts/checkSession.php');
                 $('#medicUpdate').fadeIn().delay(1500).fadeOut(300);
                 $("#medicUpdate").css("display", "inline");
             }
+			function resetVehicleState {
+				$.post("ajaxUpdate.php", $("#resetVehicleState").serialize());
+				$('#vehicleReset').fadeIn().delay(1500).fadeOut(300);
+                $("#vehicleReset").css("display", "inline");
+			}
         </script>
-</head>
-			<script>
-				// Numeric only control handler
-				$(document).ready(function() {
-					$("#compmoney").keydown(function (e) {
-						// Allow: backspace, delete, tab, escape, enter and .
-						if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
-							 // Allow: Ctrl+A
-							(e.keyCode == 65 && e.ctrlKey === true) || 
-							 // Allow: home, end, left, right
-							(e.keyCode >= 35 && e.keyCode <= 39)) {
-								 // let it happen, don't do anything
-								 return;
-						}
-						// Ensure that it is a number and stop the keypress
-						if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-							e.preventDefault();
-						}
-					});
-				});
-				function updateRank() {
-					// I am using jquery for ajax
-					$.post("ajaxUpdate.php", $("#rankform").serialize());
-					$('#copRankUpdate').fadeIn().delay(1500).fadeOut(300);
-					$('#copRankUpdate').style.display = 'inline';
-				}
-				function updateDonator() {
-					$.post("ajaxUpdate.php", $("#donatorlevelform").serialize());
-					$('#donatorLevelUpdate').fadeIn().delay(1500).fadeOut(300);
-					//document.getElementById('#donatorLevelUpdate').style.display = 'inline';
-					$("#donatorLevelUpdate").css("display", "inline");
-				}
-				function updateBlacklist() {
-					$.post("ajaxUpdate.php", $("#blacklistform").serialize());
-					$('#blacklistUpdate').fadeIn().delay(1500).fadeOut(300);
-					$("#blacklistUpdate").css("display", "inline");
-				}
-				function updateRebel() {
-					$.post("ajaxUpdate.php", $("#rebelwhitelist").serialize());
-					$('#rebelUpdate').fadeIn().delay(1500).fadeOut(300);
-					$("#rebelUpdate").css("display", "inline");
-				}
-				function updateMedic() {
-					$.post("ajaxUpdate.php", $("#medicwhitelist").serialize());
-					$('#medicUpdate').fadeIn().delay(1500).fadeOut(300);
-					$("#medicUpdate").css("display", "inline");
-				}
-			</script>	
-		</head>
+	</head>
 	<body>
 		<?php include ('assets/scripts/navbar.php'); ?>
 		
@@ -367,7 +324,7 @@ include ('assets/scripts/checkSession.php');
 								<th>VEHICLE TYPE</th> 
 								<th>VEHICLE</th>
 								<th>STATE</th>
-								<th>REMOVE</th>
+								<th>RESET STATE</th>
 							</tr>
 						</thead>
 					<!-- title end -->
@@ -398,9 +355,11 @@ include ('assets/scripts/checkSession.php');
 									}
 									echo "</td>";
 									
-									echo "<td>";
-										echo "<a href='#'>Delete</a>";
-									echo "</td>";
+									echo '<td>
+									<form id="resetVehicleState" />
+										<input name="vehicleToReset" type="hidden" value="'.$veh['id'].'" />
+										<button id="resetVehicleState" onclick="resetVehicleState()" class="btn btn-link">Reset Vehicle</button></td>	
+									</form>';
 								echo "</tr>";
 							}
 						?>

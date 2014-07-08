@@ -25,11 +25,9 @@ function whitelistPlayer($playerUID) {
     }
 }
 
-
 if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["SOMEHIDDENVARIABLE"])){
         whitelistPlayer($_POST['SOMEHIDDENVARIABLE']);
 }
-
 ?>
 <!DOCTYPE html>
 <!-- Bootstrap Template, Created by Shizles -->
