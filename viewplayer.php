@@ -81,11 +81,6 @@ include ('assets/scripts/checkSession.php');
                 $('#medicUpdate').fadeIn().delay(1500).fadeOut(300);
                 $("#medicUpdate").css("display", "inline");
             }
-			function resetVehicleState {
-				$.post("ajaxUpdate.php", $("#resetVehicleState").serialize());
-				$('#vehicleReset').fadeIn().delay(1500).fadeOut(300);
-                $("#vehicleReset").css("display", "inline");
-			}
         </script>
 	</head>
 	<body>
@@ -324,7 +319,6 @@ include ('assets/scripts/checkSession.php');
 								<th>VEHICLE TYPE</th> 
 								<th>VEHICLE</th>
 								<th>STATE</th>
-								<th>RESET STATE</th>
 							</tr>
 						</thead>
 					<!-- title end -->
@@ -354,13 +348,6 @@ include ('assets/scripts/checkSession.php');
 										echo "Stored";
 									}
 									echo "</td>";
-									
-									echo '<td>
-									<form id="resetVehicleState" />
-										<input name="vehicleToReset" type="hidden" value="'.$veh['id'].'" />
-										<button id="resetVehicleState" onclick="resetVehicleState()" class="btn btn-link">Reset Vehicle</button></td>	
-									</form>';
-								echo "</tr>";
 							}
 						?>
 					</table>

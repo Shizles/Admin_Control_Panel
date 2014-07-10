@@ -48,13 +48,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $log = mysql_query("INSERT INTO log (user, ip, action, affecteduser) VALUES ('$uid', '$visitorIP', '8', '$pid');");
         mysql_select_db($db);
     }
-	if(isset($_POST['vehicleToReset']) {
-		$vehID = mysql_real_escape_string($_POST['vehicleToReset']);
-		$query = mysql_query("UPDATE vehicles SET active = '0' WHERE id = '$vehID'");
-		mysql_select_db($webdb);
-		$log = mysql_query("INSERT INTO log (user, ip, action, affecteduser) VALUES ('$uid', '$visitorIP', '9', '$pid');");
-		mysql_select_db($db);
-	}
 }
 
 ?>
