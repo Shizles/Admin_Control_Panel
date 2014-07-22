@@ -25,8 +25,28 @@ include ('assets/scripts/checkSession.php');
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-</head>
+ <script>
+	function play(){
+		 var audio = document.getElementById("audio");
+		 audio.play();
+	}
+</script>
+
+	
+	</head>
   <body>
+	<script>
+		var warning = true;
+		window.onbeforeunload = function() {  
+		  if (warning) {  
+			return "WHY U HEF TO LEAVE? U KILL DEH SERVER DEN LEAVE?! U MAKE US CYI EVRY TYIME... >.<";  
+			}  
+		}
+
+		$('form').submit(function() {
+		   window.onbeforeunload = null;
+		});
+	</script>
   	<?php include ('assets/scripts/navbar.php'); ?>
 	
 	<!-- main -->
@@ -37,21 +57,53 @@ include ('assets/scripts/checkSession.php');
 			
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<h5>Arma 3 BE Log</h5>
-				<?php
-					$file = "C:\Program Files (x86)\Steam\SteamApps\common\Arma 3\TADST\Life\BattlEye\scripts.log";
-					if (file_exists($file) && is_readable($file)){
-						$read = fopen($file, "r");
-						while(!feof($read))
-						{
-						echo fgets($read)."<br>";
-						}
-						fclose($read);
+			<h5>Current Server Status:<br>
+			Altis Life
+			<?php
+			 
+			function getStatus($ip,$port){
+			   $socket = @fsockopen($ip, $port, $errorNo, $errorStr, 3);
+			   if(!$socket) return "<font color='RED' />Offline</font>";
+				 else return "<font color='GEREN' />Online</font>";
+			}
+			 
+			echo getStatus("127.0.0.1", "2302");
+			?>
+			</h5>
+						
+		<br>
+		
+		<!-- Start the server if it is not online -->
+		<button type="button" class="btn btn-success" <?php if($_SESSION['Privilege'] <= 4) { echo 'disabled'; } ?> >Start</button>
+
+		<!-- Announced save and restart -->
+		<button type="button" class="btn btn-info" <?php if($_SESSION['Privilege'] <= 4) { echo 'disabled'; } ?> >Restart</button>
+
+		<!-- Stops the server after a pause -->
+		<button type="button" class="btn btn-warning" <?php if($_SESSION['Privilege'] <= 4) { echo 'disabled'; } ?> >Stop</button>
+
+		<!-- KILLS THE SERVER AWMMGGG!!! -->
+		<button type="button" class="btn btn-danger" onclick="play()" <?php if($_SESSION['Privilege'] <= 0) { echo 'disabled'; } ?> >Kill Task</button>
+		<audio id="audio" src="http://217.23.2.242/control/assets/sounds/taskkill.mp3" ></audio>
+		
+		<br>
+		<br>
+		
+			<?php
+				$file = "C:\Program Files (x86)\Steam\SteamApps\common\Arma 3\TADST\Life\BattlEye\scripts.log";
+				if (file_exists($file) && is_readable($file)){
+					$read = fopen($file, "r");
+					while(!feof($read))
+					{
+					echo fgets($read)."<br>";
 					}
-					else{
-						echo "<p>Unable to open the Script Log. It is either unreadable or unavailable</p>";
-					}
-				?>
+					fclose($read);
+				}
+				else{
+					echo "<p height='550px' overflow='scroll'>Unable to open the Script Log. It is either unreadable or unavailable</p>";
+				}
+			?>
+			
 	</div>
 		</div>
 	

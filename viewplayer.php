@@ -122,6 +122,9 @@ include ('assets/scripts/checkSession.php');
 					mysql_select_db($webdb);
 					$log = mysql_query("INSERT INTO log (user, ip, action, affecteduser) VALUES ('$uid', '$visitorIP', '4', '$id');"); // Log the view action.
 					mysql_select_db($db);
+					
+				//	$civGear = mysql_fetch_array($civ_gear);
+					
 					//var_dump($data); // DEBUG
 					//echo '<title>Viewing profile for ' . $user . ' - Metro Gaming Control Panel</title>';		//USING NEW ECHO BELOW
 				} else {
@@ -354,6 +357,18 @@ include ('assets/scripts/checkSession.php');
 				</div>
 			</div>
 			<!-- vehicles end -->
+				<br>
+			<!-- gear start
+			<h1>Player Gear</h1>
+				//		<?php
+					//		while($civGear = mysql_fetch_array($civ_gear)) {
+						//		//$privilege = $_SESSION['Privilege'];
+						//		//$disabled = 'disabled';
+						//		//var_dump($civGear); // Debug
+						//		echo "<p>$civ_gear</p>";
+					//		}
+				//		?>
+			<!-- gear end -->
 		</div>
 			</div>
 		
